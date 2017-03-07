@@ -1,13 +1,16 @@
 ### TODO in battle-module
 
 ## load
+
 1.load the map-data. 
+``javascript
   {
     radio: 600,//px
     totalPlayerNum: 2,
     playerOnePosition: cc.v2(-200,200),
     playerTwoPosition: cc.v2(200,200)
   }
+``
 2. load the player-data.
   player-data-template
   {
