@@ -93,10 +93,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 6
+        "__id__": 7
       },
       {
-        "__id__": 7
+        "__id__": 6
       },
       {
         "__id__": 8
@@ -180,9 +180,9 @@
     "_lineCap": 0,
     "_fillColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 218,
+      "g": 218,
+      "b": 218,
       "a": 255
     },
     "_miterLimit": 10
@@ -195,11 +195,66 @@
       "__id__": 3
     },
     "_enabled": true,
-    "_ctx": null,
-    "_battleLoadMgr": null,
+    "_battleLoadMgr": {
+      "__id__": 6
+    },
     "playerPrefab": {
       "__uuid__": "4d1e6ef6-f600-414e-9174-15a160867409"
     }
+  },
+  {
+    "__type__": "be8b76sJ2hHu70+x3vJDWuX",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_mapData": {
+      "radio": 300,
+      "totalPlayerNum": 2,
+      "playerPositions": [
+        {
+          "__type__": "cc.Vec2",
+          "x": -200,
+          "y": -200
+        },
+        {
+          "__type__": "cc.Vec2",
+          "x": 200,
+          "y": 200
+        }
+      ]
+    },
+    "_playerDatas": [
+      {
+        "id": 0,
+        "radio": 5,
+        "actionMaxValue": 100,
+        "actionCurValue": 0,
+        "blood": 100,
+        "attack": 10,
+        "defend": 3,
+        "speed": 10,
+        "luck": 3
+      },
+      {
+        "id": 1,
+        "radio": 5,
+        "actionMaxValue": 100,
+        "actionCurValue": 0,
+        "blood": 100,
+        "attack": 10,
+        "defend": 3,
+        "speed": 10,
+        "luck": 3
+      }
+    ],
+    "_ruleData": {
+      "gameDuration": 300,
+      "cmdWaitDuration": 10
+    },
+    "_signalData": {}
   },
   {
     "__type__": "cc.Canvas",
@@ -216,19 +271,6 @@
     },
     "_fitWidth": false,
     "_fitHeight": true
-  },
-  {
-    "__type__": "be8b76sJ2hHu70+x3vJDWuX",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_mapData": null,
-    "_playerDatas": null,
-    "_ruleData": null,
-    "_signalData": null
   },
   {
     "__type__": "65d68Y3fmNKu6zv3MpsBqIm",

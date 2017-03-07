@@ -23,7 +23,7 @@ cc.Class({
         this._ctx.fill();
 
         //render the player
-        let playerDatas = this._battleLoadMgr.playerDatas;
+        let playerDatas = this._battleLoadMgr._playerDatas;
         for(let i = 0 ; i < mapData.totalPlayerNum; i++){
             let player = cc.instantiate(this.playerPrefab);
             this.node.addChild(player);

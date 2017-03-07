@@ -1,6 +1,10 @@
 cc.Class({
     extends: cc.Component,
 
+    editor: {
+        //executeInEditMode: true,
+    },
+
     properties: {
         _mapData: null,
         _playerDatas: null,
@@ -9,7 +13,7 @@ cc.Class({
 
     },
 
-    onLoad: function () {
+    load: function () {
         this._mapData = require('map-data');
         this._playerDatas = require('player-data');
         this._ruleData = require('rule-data');

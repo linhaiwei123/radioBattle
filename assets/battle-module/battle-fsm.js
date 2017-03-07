@@ -3,7 +3,7 @@ let fsm = StateMachine.create({
 initial: 'nope',
 //please select the enter-state here ↓
 events: [
-//{"name":"startup","from":"nope","to":/*enter-state*/},
+{"name":"startup","from":"nope","to":"loading"},
 {"name":"load-end","from":"loading","to":"racing"},
 {"name":"on-block","from":"racing","to":"result-rendering"},
 {"name":"block-end","from":"result-rendering","to":"racing"},
