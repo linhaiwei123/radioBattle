@@ -17,6 +17,6 @@ cc.Class({
         this._ctx.circle(0,0,radio);
         this._ctx.fill();
         this.node.name = "player#" + playerData.id;
-    }
+    },
 
 });

@@ -16,6 +16,8 @@ cc.Class({
 
     initBattleRender: function(battleLoadMgr){
         this.mainPanel.initBattleRender(battleLoadMgr);
+
+        this.getComponent("battle-main-mgr")._battleFsm["load-end"]();
     },
 
 });

@@ -10,7 +10,11 @@ cc.Class({
         _playerDatas: null,
         _ruleData: null,
         _signalData: null,
-
+        _battleRenderMgr: {
+            get: function(){
+                return this.getComponent("battle-render-mgr");
+            }
+        }
     },
 
     load: function () {
@@ -19,7 +23,7 @@ cc.Class({
         this._ruleData = require('rule-data');
         this._signalData = require('signal-data');
 
-        this.getComponent('battle-render-mgr').initBattleRender(this);
+        this._battleRenderMgr.initBattleRender(this);
     },
 
 
