@@ -3,17 +3,19 @@ cc.Class({
 
     properties: {
         _mapData: null,
-        _playerData: null,
+        _playerDatas: null,
         _ruleData: null,
         _signalData: null,
 
     },
 
     onLoad: function () {
-        _mapData = require('map-data');
-        _playerData = require('player-data');
-        _ruleData = require('rule-data');
-        _signalData = require('signal-data');
+        this._mapData = require('map-data');
+        this._playerDatas = require('player-data');
+        this._ruleData = require('rule-data');
+        this._signalData = require('signal-data');
+
+        this.getComponent('battle-render-mgr').initBattleRender(this);
     },
 
 
