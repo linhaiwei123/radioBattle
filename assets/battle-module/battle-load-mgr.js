@@ -16,4 +16,5 @@ cc.Class({
         _signalData = require('signal-data');
     },
 
+
 });
