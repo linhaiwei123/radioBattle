@@ -53,17 +53,17 @@ cc.Class({
     onTouchStart: function(e){
         //console.log("touchStart");
         if(this._touchFsm.current == 'moving'){
-            let touchPostionInTarget = this._target.convertToNodeSpaceAR(e.getTouches[0].getLocation());
+            let touchPostionInTarget = this._target.convertToNodeSpaceAR(e.getTouches()[0].getLocation());
             if(this._targetData.radio >= touchPostionInTarget.mag()){
                 this._touchFsm["touchstart-inner"]();
             }
-            this._currentTouchPosition = this.node.convertToNodeSpaceAR(e.getTouches[0].getLocation());
+            this._currentTouchPosition = this.node.convertToNodeSpaceAR(e.getTouches()[0].getLocation());
         }
         if(this._touchFsm.current == 'dragging' && e.getTouches().length >=2){
             this._currentTouchPosition = null;
             this._touchFsm["touchstart-multi"]();
         }else{
-            this._currentTouchPosition = this.node.convertToNodeSpaceAR(e.getTouches[0].getLocation());
+            this._currentTouchPosition = this.node.convertToNodeSpaceAR(e.getTouches()[0].getLocation());
         }
         
     },
@@ -74,7 +74,7 @@ cc.Class({
             this._currentTouchPosition = null;
             this._touchFsm["touchmove-multi"]();
         }else{
-            this._currentTouchPosition = this.node.convertToNodeSpaceAR(e.getTouches[0].getLocation());
+            this._currentTouchPosition = this.node.convertToNodeSpaceAR(e.getTouches()[0].getLocation());
         }
     },
 
