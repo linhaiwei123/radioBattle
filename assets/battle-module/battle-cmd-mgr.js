@@ -10,7 +10,7 @@ cc.Class({
     onLoad: function(){
         this.cmdTouchPanel.on("touchstart",this.onTouchStart.bind(this));
         this.cmdTouchPanel.on("touchmove",this.onTouchMove.bind(this));
-        this.cmdTouchPanel.on("touchend",this.onTOuchEnd.bind(this));
+        this.cmdTouchPanel.on("touchend",this.onTouchEnd.bind(this));
     },
 
     cmd: function (event,from,to,playerData) {
