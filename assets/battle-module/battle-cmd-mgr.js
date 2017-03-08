@@ -18,7 +18,7 @@ cc.Class({
         //touch the player and drag to draw the throw line
         //multi-touch in drag line to exit the drag line
         //drag line and release to commit the line
-        this._target = ths.mainPanel.getChildByName("player#" + playerData.id);
+        this._target = this.mainPanel.getChildByName("player#" + playerData.id);
         this.cmdTouchPanel.active = true;
         //move control
         //drag control
