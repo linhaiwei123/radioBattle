@@ -5,12 +5,15 @@ cc.Class({
         mainPanel : cc.Node,
         cmdTouchPanel: cc.Node,
         _target: cc.Node,
+        _touchFsm: null,
     },
 
     onLoad: function(){
         this.cmdTouchPanel.on("touchstart",this.onTouchStart.bind(this));
         this.cmdTouchPanel.on("touchmove",this.onTouchMove.bind(this));
         this.cmdTouchPanel.on("touchend",this.onTouchEnd.bind(this));
+        this._touchFsm = require("battle-touch-fsm");
+        this._touchFsm.startup();
     },
 
     cmd: function (event,from,to,playerData) {
@@ -29,10 +32,15 @@ cc.Class({
 
     onTouchStart: function(e){
         console.log("touchStart");
+        
+        
     },
 
     onTouchMove: function(e){
         console.log("touchMove");
+        
+
+        
     },
 
     onTouchEnd: function(e){
