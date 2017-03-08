@@ -96,16 +96,25 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 8
+        "__id__": 9
       },
       {
-        "__id__": 9
+        "__id__": 10
       },
       {
         "__id__": 6
       },
       {
-        "__id__": 10
+        "__id__": 13
+      },
+      {
+        "__id__": 12
+      },
+      {
+        "__id__": 11
+      },
+      {
+        "__id__": 14
       }
     ],
     "_prefab": null,
@@ -238,6 +247,8 @@
         "radio": 5,
         "actionMaxValue": 100,
         "actionCurValue": 0,
+        "maxStrength": 100,
+        "curStrength": 100,
         "blood": 100,
         "attack": 10,
         "defend": 3,
@@ -249,6 +260,8 @@
         "radio": 5,
         "actionMaxValue": 100,
         "actionCurValue": 0,
+        "maxStrength": 100,
+        "curStrength": 100,
         "blood": 100,
         "attack": 10,
         "defend": 3,
@@ -305,10 +318,41 @@
     "_tag": -1,
     "_opacityModifyRGB": false,
     "_id": "2f4dfkkl9tNga/LtHFwy+Xx",
-    "_active": true,
-    "_components": [],
+    "_active": false,
+    "_components": [
+      {
+        "__id__": 8
+      }
+    ],
     "_prefab": null,
     "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Graphics",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 7
+    },
+    "_enabled": true,
+    "_lineWidth": 3,
+    "_strokeColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_lineJoin": 1,
+    "_lineCap": 1,
+    "_fillColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_miterLimit": 10
   },
   {
     "__type__": "cc.Canvas",
@@ -334,9 +378,98 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_battleFsm": null,
-    "_battleLoadMgr": null,
-    "_battleRaceMgr": null
+    "_battleFsm": {
+      "startup": null,
+      "load-end": null,
+      "on-block": null,
+      "block-end": null,
+      "race-end": null,
+      "cmd-end": null,
+      "result-end": null,
+      "battle-end": null,
+      "current": "racing",
+      "is": null,
+      "can": null,
+      "cannot": null,
+      "transitions": null,
+      "isFinished": null,
+      "error": null,
+      "states": null,
+      "transition": null,
+      "onloading": null,
+      "onracing": null,
+      "oncmding": null
+    },
+    "_battleLoadMgr": {
+      "__id__": 6
+    },
+    "_battleRaceMgr": {
+      "__id__": 11
+    },
+    "_battleCmdMgr": {
+      "__id__": 12
+    },
+    "_battleResultMgr": null
+  },
+  {
+    "__type__": "12e0bQIWqVK5qRLGMwxlKO4",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_playerDatas": [
+      {
+        "id": 0,
+        "radio": 5,
+        "actionMaxValue": 100,
+        "actionCurValue": 0,
+        "maxStrength": 100,
+        "curStrength": 100,
+        "blood": 100,
+        "attack": 10,
+        "defend": 3,
+        "speed": 10,
+        "luck": 3
+      },
+      {
+        "id": 1,
+        "radio": 5,
+        "actionMaxValue": 100,
+        "actionCurValue": 0,
+        "maxStrength": 100,
+        "curStrength": 100,
+        "blood": 100,
+        "attack": 10,
+        "defend": 3,
+        "speed": 10,
+        "luck": 3
+      }
+    ],
+    "_touchActiveMaxArray": []
+  },
+  {
+    "__type__": "b82780gaepG86B44tkkzdzZ",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "mainPanel": {
+      "__id__": 3
+    },
+    "cmdTouchPanel": {
+      "__id__": 7
+    },
+    "_target": null,
+    "_targetData": null,
+    "_touchFsm": null,
+    "_currentWorldTouchPosition": null,
+    "_worldDestinationPosition": null,
+    "movePixel": 2,
+    "_dragLineCtx": null
   },
   {
     "__type__": "65d68Y3fmNKu6zv3MpsBqIm",
@@ -354,5 +487,14 @@
     "missionPanel": null,
     "gameDurationPanel": null,
     "actionDurationPanel": null
+  },
+  {
+    "__type__": "68a24WAoGVB2ooXL8vbjRty",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true
   }
 ]

@@ -11,7 +11,7 @@ cc.Class({
         let worldDestinationPosition = arg.worldDestinationPosition;
         //init signal and throw it 
         //test the default signal
-        
+        console.log(arg);
     },
 
 
