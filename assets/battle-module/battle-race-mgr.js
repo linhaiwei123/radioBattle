@@ -7,6 +7,7 @@ cc.Class({
         },
 
         _playerDatas: null,
+        _touchActiveMaxArray : [],
     },
 
     race: function () {
@@ -15,7 +16,14 @@ cc.Class({
     },
 
     raceTick: function(){
-        let touchActiveMaxArray = [];
+        //let touchActiveMaxArray = [];
+        if(!!this._touchActiveMaxArray.length){
+            this.unschedule(this.raceTick);
+            this._touchActiveMaxArray.sort(function(a,b){ return a.actionCurValue - b.activeCurValue});
+            this.getComponent("battle-main-mgr")._battleFsm["race-end"](this._touchActiveMaxArray.shift());
+            return;
+        }
+
         for(let playerData of this._playerDatas){
             //check alive
             if(playerData.blood <= 0){continue;}
@@ -24,13 +32,13 @@ cc.Class({
             if(playerData.actionCurValue >= playerData.actionMaxValue){
                 //this.unschedule(this.raceTick);
                 //this.scheduleOnce(this.getComponent("battle-main-mgr")._battleFsm["race-end"](playerData).bind(this),0);
-                touchActiveMaxArray.push(playerData);
+                this._touchActiveMaxArray.push(playerData);
             }
         }
-        if(!!touchActiveMaxArray.length){
+        if(!!this._touchActiveMaxArray.length){
             this.unschedule(this.raceTick);
-            touchActiveMaxArray.sort(function(a,b){ return a.actionCurValue - b.activeCurValue});
-            this.getComponent("battle-main-mgr")._battleFsm["race-end"](playerData);
+            this._touchActiveMaxArray.sort(function(a,b){ return a.actionCurValue - b.activeCurValue});
+            this.getComponent("battle-main-mgr")._battleFsm["race-end"](this._touchActiveMaxArray.shift());
         }
     },
 
