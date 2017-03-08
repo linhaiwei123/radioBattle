@@ -104,7 +104,7 @@ cc.Class({
             //release
             console.log("dragging release");
             this.cmdTouchPanel.active = false;
-            this.unSchedule(this.controlAbleUpdate.bind(this));
+            this.unschedule(this.controlAbleUpdate.bind(this));
             this._dragLineCtx.clear();
             this.getComponent('battle-main-mgr')._battleFsm["cmd-end"]({targetData: this._targetData, worldDestinationPosition : this._worldDestinationPosition});
 
