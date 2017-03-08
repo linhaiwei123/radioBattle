@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         mainPanel : cc.Node,
         cmdTouchPanel: cc.Node,
+        signalSelectPanel: cc.Node,
         _target: cc.Node,
         _targetData: null,
         _touchFsm: null,
@@ -31,6 +32,7 @@ cc.Class({
         this._targetData = playerData;
         this.schedule(this.controlAbleUpdate.bind(this),1/60);
         this.cmdTouchPanel.active = true;
+        this.signalSelectPanel.active = true;
         //move control
         //drag control
         //release control

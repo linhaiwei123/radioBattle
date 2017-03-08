@@ -3,8 +3,8 @@ let playerTestGenerator = function(){
     let player = {};
     player.id = id++;
     player.radio = 5,
-    player.actionMaxValue = 100,
-    player.actionCurValue = 0,
+    // player.actionMaxValue = 100,
+    // player.actionCurValue = 0,
     player.maxStrength = 100,
     player.curStrength = 100,
     player.blood = 100,
@@ -12,10 +12,44 @@ let playerTestGenerator = function(){
     player.defend = 3,
     player.speed = 10,
     player.luck = 3;
+    //fast cal race 
+    player.actionDuration = 0;
+
     return player;
 }
 
+// module.exports = [
+//     new playerTestGenerator(),
+//     new playerTestGenerator(),
+//]
+
 module.exports = [
-    new playerTestGenerator(),
-    new playerTestGenerator(),
+    {
+        id: 0,
+        radio: 5,
+        // actionMaxValue: 100,
+        // actionCurValue: 0,
+        maxStrength: 100,
+        curStrength: 100,
+        blood: 100,
+        attack: 10,
+        defend: 3,
+        speed: 10,
+        luck: 3,
+        actionDuration: 0,
+    },
+    {
+        id: 1,
+        radio: 5,
+        // actionMaxValue: 100,
+        // actionCurValue: 0,
+        maxStrength: 100,
+        curStrength: 100,
+        blood: 100,
+        attack: 10,
+        defend: 3,
+        speed: 15,
+        luck: 3,
+        actionDuration: 0,
+    },
 ]
