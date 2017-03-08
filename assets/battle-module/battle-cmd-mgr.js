@@ -37,14 +37,14 @@ cc.Class({
     },
 
     controlAbleUpdate: function(){
-        if(this._target){
+        if(this._target && this._touchFsm){
             if(this._touchFsm.current == 'moving' && this._currentTouchPosition){
                 //follow the point
                 //delete the line gizmo
                 let moveNormalVector = cc.pNormalize(cc.pSub(this._currentTouchPosition,this._target.position));
                 this._target.position = cc.pAdd(this._target.position,cc.pMult(moveNormalVector,this.movePixel));
             }
-            else if(this.touchFsm.current == 'dragging' && this._currentTouchPosition){
+            else if(this._touchFsm.current == 'dragging' && this._currentTouchPosition){
                 //dragging line
             }
         }
