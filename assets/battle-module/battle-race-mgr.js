@@ -5,6 +5,7 @@ cc.Class({
         _battleLoadMgr: {
             get: function(){return this.getComponent("battle-load-mgr")}
         },
+
         _playerDatas: null,
     },
 
@@ -21,6 +22,7 @@ cc.Class({
             console.log(playerData.actionCurValue);
             if(playerData.actionCurValue >= playerData.actionMaxValue){
                 this.unschedule(this.raceTick);
+                this.getComponent("battle-main-mgr")._battleFsm["race-end"](playerData);
             }
         }
         

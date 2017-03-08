@@ -96,16 +96,16 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 9
+        "__id__": 8
       },
       {
-        "__id__": 10
+        "__id__": 9
       },
       {
         "__id__": 6
       },
       {
-        "__id__": 11
+        "__id__": 10
       }
     ],
     "_prefab": null,
@@ -264,7 +264,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "action-panel",
+    "_name": "cmd-touch-panel",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -285,8 +285,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 254,
-      "height": 317
+      "width": 960,
+      "height": 640
     },
     "_children": [],
     "_rotationX": 0,
@@ -295,8 +295,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -343,
-      "y": 159
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -304,41 +304,11 @@
     "_globalZOrder": 0,
     "_tag": -1,
     "_opacityModifyRGB": false,
-    "_id": "c027ctTVVxLNaQSV3XihyZp",
+    "_id": "2f4dfkkl9tNga/LtHFwy+Xx",
     "_active": true,
-    "_components": [
-      {
-        "__id__": 8
-      }
-    ],
+    "_components": [],
     "_prefab": null,
     "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 7
-    },
-    "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "7cbd1914-7749-4f03-ba52-8bd3aec00ccc"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
   },
   {
     "__type__": "cc.Canvas",
@@ -365,7 +335,8 @@
     },
     "_enabled": true,
     "_battleFsm": null,
-    "_battleLoadMgr": null
+    "_battleLoadMgr": null,
+    "_battleRaceMgr": null
   },
   {
     "__type__": "65d68Y3fmNKu6zv3MpsBqIm",
