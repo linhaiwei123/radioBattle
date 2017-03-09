@@ -12,13 +12,15 @@ cc.Class({
     init: function (signalData) {
         this._signalData = signalData;
         this._signalColor = cc.hexToColor(require("signal-circle-color-data")[this._signalData.id]);
+        //console.log(this._signalColor);
         //rename
         this.node.name = "signal#" + this._signalData.idx;
         this.node.getChildByName("signal-core").color = this._signalColor;
-        //this.node.setSiblingIndex(50);
+        //this.node.setSiblingIndex(1000);
+        this.node.zIndex = 50;
     },
 
-    onHitGround: function(targetNode,cb){
+    onHitGround: function(cb,targetNode){
         this._ctx.fillColor = this._signalColor;
         this._ctx.circle(0,0,this._signalData.radio);
         this._ctx.fill();

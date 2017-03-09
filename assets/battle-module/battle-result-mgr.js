@@ -83,7 +83,8 @@ cc.Class({
         }
 
         let throwCallback = function(){
-            console.log("throwCallback");
+            //console.log("throwCallback");
+            this.getComponent("battle-main-mgr")._battleFsm["result-end"]();
         };
 
         

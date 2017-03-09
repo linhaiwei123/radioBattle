@@ -32,13 +32,17 @@ cc.Class({
         this.mainPanel.addChild(signal);
         signal.position = playerPosition;
         signal.getComponent("signal-script").init(signalData);
-        signal.runAction(
+        signal.runAction(cc.sequence(
             cc.moveTo(this.throwDuration,signalPosition),
             cc.callFunc(
-                signal.getComponent("signal-script").onHitGround,
-                signal,
-                cb
+                signal.getComponent("signal-script").onHitGround.bind(signal.getComponent("signal-script"),cb),
+                //signal,
+                //cb
+                // function(){
+                //     console.log("here");
+                // }
                 )
+            )
         );
         //signal.getComponent("signal-script").onHitGround;
     },

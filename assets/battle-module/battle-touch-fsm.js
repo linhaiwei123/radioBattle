@@ -6,7 +6,8 @@ events: [
 {"name":"startup","from":"nope","to":"moving"},
 {"name":"touchstart-inner","from":"moving","to":"dragging"},
 {"name":"touchstart-multi","from":"dragging","to":"moving"},
-{"name":"touchmove-multi","from":"dragging","to":"moving"}
+{"name":"touchmove-multi","from":"dragging","to":"moving"},
+{"name":"throw-end","from":"dragging","to":"moving"}
 ]
 });
 module.exports = fsm

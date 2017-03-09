@@ -32,7 +32,7 @@ cc.Class({
         //drag line and release to commit the line
         this._target = this.mainPanel.getChildByName("player#" + playerData.id);
         this._targetData = playerData;
-        this.schedule(this.controlAbleUpdate.bind(this),1/60);
+        this.schedule(this.controlAbleUpdate,1/60);
         this.cmdTouchPanel.active = true;
 
         //this.signalSelectPanel.active = true;
@@ -45,6 +45,7 @@ cc.Class({
     },
 
     controlAbleUpdate: function(){
+        //console.log("here");
         if(this._target && this._touchFsm){
             if(this._touchFsm.current == 'moving' && this._currentWorldTouchPosition){
                 //follow the point
@@ -110,14 +111,15 @@ cc.Class({
             //release
             console.log("dragging release");
             this.cmdTouchPanel.active = false;
-            this.unschedule(this.controlAbleUpdate.bind(this));
+            this.unschedule(this.controlAbleUpdate);
             this._dragLineCtx.clear();
             this.getComponent('battle-main-mgr')._battleFsm["cmd-end"]({
                 targetData: this._targetData, 
                 worldDestinationPosition : this._worldDestinationPosition,
                 signalId: 0,
             });
-
+            this._currentWorldTouchPosition = null;
+            this._touchFsm["throw-end"]();
         }else if(this._touchFsm.current == 'moving'){
             this._currentWorldTouchPosition = null;
         }
