@@ -22,12 +22,14 @@ cc.Class({
         _signals: [],
         _signalData: null,  
         _playerDatas: null,
-        _idxPool : new IdxPool(100)
+        _idxPool : null,
+        mainPanel: cc.Node,
     },
 
     onLoad: function(){
         this._signalData = require('signal-data');
         this._playerDatas = this.getComponent("battle-load-mgr")._playerDatas;
+        this._idxPool = new IdxPool(100);
     },
 
     result: function (event,from,to,arg) {
@@ -53,7 +55,7 @@ cc.Class({
         //map enery player and enery signals if touch
         for(let playerData of this._playerDatas){
             //get the child
-            let player = this.node.getChildByName("player#" + playerData.id);
+            let player = this.mainPanel.getChildByName("player#" + playerData.id);
             let playerWorldPosition = player.parent.convertToWorldSpaceAR(player.position);
             for(let signal of this._signals){
                 let signalWorldPosition = signal.worldPosition;
@@ -75,14 +77,22 @@ cc.Class({
             if(signal.times == 0){
                 //remove 
                 this._signals.splice(i,1);
+                this._idxPool.backIdx(signal.idx);
                 removeRenderSignals.push(signal);
             }
         }
-        
+
+        let throwCallback = function(){
+            console.log("throwCallback");
+        };
 
         
-
+        //call render 
+        for(let signal of addRenderSignals){
+            this.getComponent('battle-render-mgr').throwRender(signal,throwCallback.bind(this));
+        }
+    
     },
 
-
+    
 });

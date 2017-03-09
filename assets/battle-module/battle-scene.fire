@@ -75,9 +75,6 @@
       },
       {
         "__id__": 7
-      },
-      {
-        "__id__": 9
       }
     ],
     "_rotationX": 0,
@@ -99,25 +96,25 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 9
       },
       {
-        "__id__": 12
+        "__id__": 10
       },
       {
         "__id__": 6
       },
       {
-        "__id__": 15
-      },
-      {
-        "__id__": 14
-      },
-      {
         "__id__": 13
       },
       {
-        "__id__": 16
+        "__id__": 12
+      },
+      {
+        "__id__": 11
+      },
+      {
+        "__id__": 14
       }
     ],
     "_prefab": null,
@@ -358,84 +355,6 @@
     "_miterLimit": 10
   },
   {
-    "__type__": "cc.Node",
-    "_name": "signal-select-panel",
-    "_objFlags": 0,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_parent": {
-      "__id__": 2
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 600,
-      "height": 100
-    },
-    "_children": [],
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 3,
-      "y": -247
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_tag": -1,
-    "_opacityModifyRGB": false,
-    "_id": "51859nIWSNBF6nNJXcRZvpP",
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 10
-      }
-    ],
-    "_prefab": null,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 9
-    },
-    "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
-  },
-  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -485,10 +404,10 @@
       "__id__": 6
     },
     "_battleRaceMgr": {
-      "__id__": 13
+      "__id__": 11
     },
     "_battleCmdMgr": {
-      "__id__": 14
+      "__id__": 12
     },
     "_battleResultMgr": null
   },
@@ -543,6 +462,7 @@
     "cmdTouchPanel": {
       "__id__": 7
     },
+    "signalSelectPanel": null,
     "_target": null,
     "_targetData": null,
     "_touchFsm": null,
@@ -560,13 +480,17 @@
     },
     "_enabled": true,
     "mainPanel": {
-      "__id__": 5
+      "__id__": 3
     },
     "actionValuePanel": null,
     "playerAttrPanel": null,
     "missionPanel": null,
     "gameDurationPanel": null,
-    "actionDurationPanel": null
+    "actionDurationPanel": null,
+    "throwDuration": 1,
+    "signalPrefab": {
+      "__uuid__": "d5ef7b3f-704b-4aa5-b312-4bebaf116fda"
+    }
   },
   {
     "__type__": "68a24WAoGVB2ooXL8vbjRty",
@@ -575,6 +499,13 @@
     "node": {
       "__id__": 2
     },
-    "_enabled": true
+    "_enabled": true,
+    "_signals": [],
+    "_signalData": null,
+    "_playerDatas": null,
+    "_idxPool": null,
+    "mainPanel": {
+      "__id__": 3
+    }
   }
 ]
