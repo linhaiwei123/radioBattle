@@ -24,6 +24,8 @@ cc.Class({
     },
 
     cmd: function (event,from,to,playerData) {
+        //init signalPanelSkillItem
+
         //touch the map to move
         //touch the player and drag to draw the throw line
         //multi-touch in drag line to exit the drag line
@@ -32,7 +34,9 @@ cc.Class({
         this._targetData = playerData;
         this.schedule(this.controlAbleUpdate.bind(this),1/60);
         this.cmdTouchPanel.active = true;
-        this.signalSelectPanel.active = true;
+
+        //this.signalSelectPanel.active = true;
+
         //move control
         //drag control
         //release control
@@ -108,7 +112,11 @@ cc.Class({
             this.cmdTouchPanel.active = false;
             this.unschedule(this.controlAbleUpdate.bind(this));
             this._dragLineCtx.clear();
-            this.getComponent('battle-main-mgr')._battleFsm["cmd-end"]({targetData: this._targetData, worldDestinationPosition : this._worldDestinationPosition});
+            this.getComponent('battle-main-mgr')._battleFsm["cmd-end"]({
+                targetData: this._targetData, 
+                worldDestinationPosition : this._worldDestinationPosition,
+                signalId: 0,
+            });
 
         }else if(this._touchFsm.current == 'moving'){
             this._currentWorldTouchPosition = null;
