@@ -24,12 +24,18 @@ cc.Class({
         _playerDatas: null,
         _idxPool : null,
         mainPanel: cc.Node,
+
+       _battleRenderMgr: {
+           get: function(){return this.getComponent('battle-render-mgr');}
+       },
+       
     },
 
     onLoad: function(){
         this._signalData = require('signal-data');
         this._playerDatas = this.getComponent("battle-load-mgr")._playerDatas;
         this._idxPool = new IdxPool(100);
+        
     },
 
     result: function (event,from,to,arg) {
@@ -40,11 +46,15 @@ cc.Class({
         //test the default signal 
         //console.log(arg);
 
+        //resume the playerData.curStrength
+        targetData.curStrength = targetData.maxStrength;
+
         let signal = this._signalData[signalId](targetData,worldDestinationPosition);
         signal.idx = this._idxPool.getIdx();
 
-        let addRenderSignals = [];
-        addRenderSignals.push(signal);
+        let addRenderSignal = signal;
+        //addRenderSignals.push(signal);
+        this._battleRenderMgr._resultAnimData.addRenderSignal = addRenderSignal;
 
         //add up the player's actionDuration
         targetData.actionDuration += Math.max((signal.consume - targetData.speed),10);
@@ -62,7 +72,7 @@ cc.Class({
                 //check if touch the radio
                 if(cc.pDistance(playerWorldPosition,signalWorldPosition) <= signal.radio){
                     //touch
-                    signal.cb(player);
+                    signal.cb(playerData);
                 }
             }
         }
@@ -81,17 +91,24 @@ cc.Class({
                 removeRenderSignals.push(signal);
             }
         }
+        this._battleRenderMgr._resultAnimData.removeRenderSignals = removeRenderSignals;
 
-        let throwCallback = function(){
-            //console.log("throwCallback");
+        this._battleRenderMgr._resultAnimFsm["start-throw"]();
+
+        this._battleRenderMgr._resultAnimFsm["onsignal-result-end"] = function(){
             this.getComponent("battle-main-mgr")._battleFsm["result-end"]();
-        };
+        }.bind(this);
+
+        // let throwCallback = function(){
+        //     //console.log("throwCallback");
+        //     this.getComponent("battle-main-mgr")._battleFsm["result-end"]();
+        // };
 
         
         //call render 
-        for(let signal of addRenderSignals){
-            this.getComponent('battle-render-mgr').throwRender(signal,throwCallback.bind(this));
-        }
+        // for(let signal of addRenderSignals){
+        //     this.getComponent('battle-render-mgr').throwRender(signal,throwCallback.bind(this));
+        // }
     
     },
 

@@ -11,6 +11,7 @@ cc.Class({
         _currentWorldTouchPosition: null,
         _worldDestinationPosition: null,
         movePixel: 2,
+        moveStrengthConsume: 1,
         _dragLineCtx: null,
     },
 
@@ -51,8 +52,15 @@ cc.Class({
                 //follow the point
                 //delete the line gizmo
                 //#
+
+                //add strength limit
+                if(this._targetData.curStrength <= 0){return;}
+                this._targetData.curStrength -= this.moveStrengthConsume;
+
+                
                 let moveNormalVector = cc.pNormalize(this._target.convertToNodeSpaceAR(this._currentWorldTouchPosition));
                 this._target.position = cc.pAdd(this._target.position,cc.pMult(moveNormalVector,this.movePixel));
+
             }
             else if(this._touchFsm.current == 'dragging' && this._currentWorldTouchPosition){
                 //dragging line

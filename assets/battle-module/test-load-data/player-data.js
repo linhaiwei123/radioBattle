@@ -37,6 +37,7 @@ module.exports = [
         speed: 10,
         luck: 3,
         actionDuration: 0,
+        resultTipsDataArray: [],
     },
     {
         id: 1,
@@ -51,5 +52,6 @@ module.exports = [
         speed: 15,
         luck: 3,
         actionDuration: 0,
+        resultTipsDataArray: [],
     },
 ]

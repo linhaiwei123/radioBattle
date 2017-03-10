@@ -10,11 +10,51 @@ cc.Class({
         actionDurationPanel: cc.Node,
         throwDuration: 1,
         signalPrefab: cc.Prefab,
+        _resultAnimFsm: null,
+         _resultAnimData: null,
+
+        resultTipsPrefab: cc.Prefab,
     },
 
     onLoad: function () {
+        this._resultAnimFsm = require("result-anim-fsm");
+        this._resultAnimData = {};
 
+        this._resultAnimFsm.onthrow = this.throwRender.bind(this);
+        this._resultAnimFsm["onupdate-signal-render"] = this.removeSignalRender.bind(this);
+        this._resultAnimFsm["onsignal-result-render"] = this.signalResultRender.bind(this);
+        this._resultAnimFsm.startup();
+
+        
     },
+
+    signalResultRender: function(){
+        console.log("resultRender");
+        let playerDatas = this.getComponent("battle-load-mgr")._playerDatas;
+        for(let playerData of playerDatas){
+            //console.log(playerData);
+            let player = this.mainPanel.getChildByName("player#" + playerData.id);
+            for(let resultTipsData of playerData.resultTipsDataArray){
+                let resultTips = cc.instantiate(this.resultTipsPrefab);
+                player.parent.addChild(resultTips);
+                resultTips.zIndex = 2000;
+                resultTips.position = player.position;
+                resultTips.getComponent("resultTips-script").init(resultTipsData);
+            }
+            playerData.resultTipsDataArray = [];
+        }
+        this._resultAnimFsm["signal-result-end"]();
+    },
+
+    removeSignalRender: function(){
+        for(let removeSignal of this._resultAnimData.removeRenderSignals){
+            let signal = this.mainPanel.getChildByName("signal#" + removeSignal.idx);
+            signal.removeFromParent();
+        }
+        this._resultAnimFsm["signal-update-end"]();
+    },
+
+
 
     initBattleRender: function(battleLoadMgr){
         this.mainPanel.getComponent("main-panel-script").initBattleRender(battleLoadMgr);
@@ -22,7 +62,13 @@ cc.Class({
         this.getComponent("battle-main-mgr")._battleFsm["load-end"]();
     },
 
-    throwRender: function(signalData,cb){
+    throwRender: function(){
+
+        let signalData = this._resultAnimData.addRenderSignal;
+        let cb = function(){
+            this._resultAnimFsm['throw-end']();
+        }
+
         //no wind test
         let playerData = signalData.origin;
         let player = this.mainPanel.getChildByName("player#" + playerData.id);
@@ -35,16 +81,10 @@ cc.Class({
         signal.runAction(cc.sequence(
             cc.moveTo(this.throwDuration,signalPosition),
             cc.callFunc(
-                signal.getComponent("signal-script").onHitGround.bind(signal.getComponent("signal-script"),cb),
-                //signal,
-                //cb
-                // function(){
-                //     console.log("here");
-                // }
+                signal.getComponent("signal-script").onHitGround.bind(signal.getComponent("signal-script"),cb.bind(this)),
                 )
             )
         );
-        //signal.getComponent("signal-script").onHitGround;
     },
 
 });

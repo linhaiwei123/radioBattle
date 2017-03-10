@@ -10,7 +10,14 @@ let SimpleAttackSignal = function(origin,position){
     signal.times = 2,
     signal.order = 90,
     signal.cb = function(target){
-        target.blood -= Math.max((target.defend - origin.attack) * 0.3, 1);
+        let data = Math.max((target.defend - origin.attack) * 0.3, 1);
+        target.blood -= data;
+        target.resultTipsDataArray.push({
+            msg: 'hp-' + data,
+            color: cc.hexToColor('#F81919'),
+        });
+
+        
     }
     return signal;
 }

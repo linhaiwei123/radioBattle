@@ -469,6 +469,7 @@
     "_currentWorldTouchPosition": null,
     "_worldDestinationPosition": null,
     "movePixel": 2,
+    "moveStrengthConsume": 1,
     "_dragLineCtx": null
   },
   {
@@ -490,6 +491,11 @@
     "throwDuration": 1,
     "signalPrefab": {
       "__uuid__": "d5ef7b3f-704b-4aa5-b312-4bebaf116fda"
+    },
+    "_resultAnimFsm": null,
+    "_resultAnimData": null,
+    "resultTipsPrefab": {
+      "__uuid__": "80b916bc-c55e-4b15-a2f0-b93f01a13b03"
     }
   },
   {
