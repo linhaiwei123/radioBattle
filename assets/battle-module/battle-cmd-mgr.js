@@ -13,6 +13,14 @@ cc.Class({
         movePixel: 2,
         moveStrengthConsume: 1,
         _dragLineCtx: null,
+
+       windMin: 0,
+       windRange: 30,
+       _windValue: null,
+       _windVector: null,
+        _battleRenderMgr: {
+           get: function(){return this.getComponent('battle-render-mgr');}
+       },
     },
 
     onLoad: function(){
@@ -26,6 +34,14 @@ cc.Class({
 
     cmd: function (event,from,to,playerData) {
         //init signalPanelSkillItem
+
+        //add wind tips
+        this._windValue = this.windMin + Math.floor(cc.random0To1() * this.windRange);
+        this._windVector = cc.pMult(cc.pNormalize(cc.v2(cc.randomMinus1To1(),cc.randomMinus1To1())),this._windValue);
+        //console.log(this._windVector);
+        //render windtips
+        this._battleRenderMgr.windTipsRender(this._windValue,this._windVector);
+
 
         //touch the map to move
         //touch the player and drag to draw the throw line
@@ -125,6 +141,8 @@ cc.Class({
                 targetData: this._targetData, 
                 worldDestinationPosition : this._worldDestinationPosition,
                 signalId: 0,
+                windValue: this._windValue,
+                windVector: this._windVector
             });
             this._currentWorldTouchPosition = null;
             this._touchFsm["throw-end"]();

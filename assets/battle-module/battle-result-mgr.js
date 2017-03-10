@@ -15,6 +15,7 @@ let IdxPool = function(length){
         this._idxPool.push(id);
     }
 };
+
 cc.Class({
     extends: cc.Component,
 
@@ -29,6 +30,10 @@ cc.Class({
            get: function(){return this.getComponent('battle-render-mgr');}
        },
        
+    //    windMin: 0,
+    //    windRange: 30,
+    //    _windValue: null,
+    //    _windVector: null,
     },
 
     onLoad: function(){
@@ -46,10 +51,24 @@ cc.Class({
         //test the default signal 
         //console.log(arg);
 
+        //cal the wind
+        // this._windValue = this.windMin + Math.floor(cc.random0To1() * this.windRange);
+        // this._windVector = cc.pMult(cc.pNormalize(cc.v2(cc.randomMinus1To1(),cc.randomMinus1To1())),this._windValue);
+        let windValue = arg.windValue;
+        let windVector = arg.windVector;
+        //console.log(this._windVector);
+        //render windtips
+        //this._battleRenderMgr.windTipsRender(this._windValue,this._windVector);
+        //this._battleRenderMgr.windTipsRender(windValue,windVector);
+
+        //update the worldDestionationPosition
+        let worldDestinationPositionWithWind = cc.pAdd(worldDestinationPosition,windVector);
+
+
         //resume the playerData.curStrength
         targetData.curStrength = targetData.maxStrength;
 
-        let signal = this._signalData[signalId](targetData,worldDestinationPosition);
+        let signal = this._signalData[signalId](targetData,worldDestinationPositionWithWind,worldDestinationPosition);
         signal.idx = this._idxPool.getIdx();
 
         let addRenderSignal = signal;
@@ -70,9 +89,11 @@ cc.Class({
             for(let signal of this._signals){
                 let signalWorldPosition = signal.worldPosition;
                 //check if touch the radio
-                if(cc.pDistance(playerWorldPosition,signalWorldPosition) <= signal.radio){
+                let distance = cc.pDistance(playerWorldPosition,signalWorldPosition);
+                if(distance <= signal.radio){
                     //touch
-                    signal.cb(playerData);
+                    let distanceRate = distance/signal.radio;
+                    signal.cb(playerData,distanceRate);
                 }
             }
         }

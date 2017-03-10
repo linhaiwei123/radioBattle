@@ -3,11 +3,12 @@ cc.Class({
 
     properties: {
         mainPanel: cc.Node,//require('main-panel-script'),
-        actionValuePanel: cc.Node,
+        //actionValuePanel: cc.Node,
         playerAttrPanel: cc.Node,
         missionPanel: cc.Node,
         gameDurationPanel: cc.Node,
-        actionDurationPanel: cc.Node,
+        //actionDurationPanel: cc.Node,
+        windTipsPanel: cc.Node,
         throwDuration: 1,
         signalPrefab: cc.Prefab,
         _resultAnimFsm: null,
@@ -26,6 +27,10 @@ cc.Class({
         this._resultAnimFsm.startup();
 
         
+    },
+
+    windTipsRender: function(windValue,windVector){
+        this.windTipsPanel.getComponent("windtips-panel-script").updateWind(windValue,windVector);
     },
 
     signalResultRender: function(){
@@ -74,12 +79,16 @@ cc.Class({
         let player = this.mainPanel.getChildByName("player#" + playerData.id);
         let playerPosition = player.position;
         let signalPosition = this.mainPanel.convertToNodeSpaceAR(signalData.worldPosition);
+        let signalCtrlPosition = this.mainPanel.convertToNodeSpaceAR(signalData.ctrlPosition);
         let signal = cc.instantiate(this.signalPrefab);
         this.mainPanel.addChild(signal);
         signal.position = playerPosition;
         signal.getComponent("signal-script").init(signalData);
+        let bezier = [signalCtrlPosition, signalCtrlPosition, signalPosition];
         signal.runAction(cc.sequence(
-            cc.moveTo(this.throwDuration,signalPosition),
+            //cc.moveTo(this.throwDuration,signalPosition),
+            //add wind ,so bezier move
+            cc.bezierTo(2, bezier),
             cc.callFunc(
                 signal.getComponent("signal-script").onHitGround.bind(signal.getComponent("signal-script"),cb.bind(this)),
                 )
