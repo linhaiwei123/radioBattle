@@ -73,6 +73,9 @@ cc.Class({
                 if(this._targetData.curStrength <= 0){return;}
                 this._targetData.curStrength -= this.moveStrengthConsume;
 
+                //update strength tips
+                this._target.getComponent("player-script").updatePlayerDataTips();
+
                 
                 let moveNormalVector = cc.pNormalize(this._target.convertToNodeSpaceAR(this._currentWorldTouchPosition));
                 this._target.position = cc.pAdd(this._target.position,cc.pMult(moveNormalVector,this.movePixel));

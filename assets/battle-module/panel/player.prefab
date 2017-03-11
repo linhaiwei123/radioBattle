@@ -72,7 +72,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "blood-process",
+    "_name": "strength-progress",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -108,7 +108,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 20
+      "y": 12
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -138,9 +138,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 253,
-      "g": 103,
-      "b": 103,
+      "r": 112,
+      "g": 255,
+      "b": 32,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -219,7 +219,7 @@
     "asset": {
       "__uuid__": "4d1e6ef6-f600-414e-9174-15a160867409"
     },
-    "fileId": "4247cLtx/5Oh542N5GAb73M",
+    "fileId": "78661gBPbhIn6RbA7CbdLmk",
     "sync": false
   },
   {
@@ -256,10 +256,12 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_N$barSprite": null,
+    "_N$barSprite": {
+      "__id__": 4
+    },
     "_N$mode": 0,
     "_N$totalLength": 100,
-    "_N$progress": 0.5,
+    "_N$progress": 1,
     "_N$reverse": false
   },
   {
@@ -270,12 +272,12 @@
     "asset": {
       "__uuid__": "4d1e6ef6-f600-414e-9174-15a160867409"
     },
-    "fileId": "0e1d6j6goNEhpRSad73cyPa",
+    "fileId": "c6d8evadBJJhaqJgVvNg1rQ",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "strength-process",
+    "_name": "blood-progress",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -311,7 +313,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 12
+      "y": 20
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -341,9 +343,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 112,
-      "g": 255,
-      "b": 32,
+      "r": 235,
+      "g": 91,
+      "b": 125,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -422,7 +424,7 @@
     "asset": {
       "__uuid__": "4d1e6ef6-f600-414e-9174-15a160867409"
     },
-    "fileId": "78661gBPbhIn6RbA7CbdLmk",
+    "fileId": "4b5d6kzu6pDeqqyYUCBk97l",
     "sync": false
   },
   {
@@ -475,7 +477,7 @@
     "asset": {
       "__uuid__": "4d1e6ef6-f600-414e-9174-15a160867409"
     },
-    "fileId": "c6d8evadBJJhaqJgVvNg1rQ",
+    "fileId": "2075349znVFCr21m+GLhDzl",
     "sync": false
   },
   {
@@ -512,7 +514,9 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true
+    "_enabled": true,
+    "_playerData": null,
+    "_bloodTotal": null
   },
   {
     "__type__": "cc.PrefabInfo",

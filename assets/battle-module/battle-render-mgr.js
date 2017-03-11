@@ -47,6 +47,8 @@ cc.Class({
                 resultTips.getComponent("resultTips-script").init(resultTipsData);
             }
             playerData.resultTipsDataArray = [];
+            //update playerDataTips
+            player.getComponent("player-script").updatePlayerDataTips();
         }
         this._resultAnimFsm["signal-result-end"]();
     },
