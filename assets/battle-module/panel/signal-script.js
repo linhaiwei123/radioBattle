@@ -11,8 +11,13 @@ cc.Class({
 
     init: function (signalData) {
         this._signalData = signalData;
-        this._signalColor = cc.hexToColor(require("signal-circle-color-data")[this._signalData.id]);
-        //console.log(this._signalColor);
+        //this._signalColor = cc.hexToColor(require("signal-circle-color-data")[this._signalData.id]);
+        //use the same as signal tips
+        //this._signalColor = signalData.color;
+        this.node.opacity = 120;
+        let color = cc.hexToColor(cc.colorToHex(cc.color(signalData.color.r,signalData.color.g,signalData.color.b,this.node.opacity)));
+        this._signalColor = color;
+        
         //rename
         this.node.name = "signal#" + this._signalData.idx;
         this.node.getChildByName("signal-core").color = this._signalColor;
