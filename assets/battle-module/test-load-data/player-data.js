@@ -15,6 +15,11 @@ let playerTestGenerator = function(){
     //fast cal race 
     player.actionDuration = 0;
 
+    //add divided mem for singal communication
+    player.signalsMem = {};
+    //add stack for follow mini-signal
+    player.followSignals = [];
+
     return player;
 }
 

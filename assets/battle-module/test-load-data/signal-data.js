@@ -23,7 +23,7 @@ let SimpleAttackSignal = function(origin,position,ctrlPosition){
     return signal;
 }
 
-let AttackUpSignal = function(origin,position,ctrlPosition){
+let AttackRevertSignal = function(origin,position,ctrlPosition){
     let signal = {};
     signal.worldPosition = position;
     signal.ctrlPosition = ctrlPosition;
@@ -31,7 +31,7 @@ let AttackUpSignal = function(origin,position,ctrlPosition){
     signal.origin = origin;
     signal.id = 1;
     signal.idx = null;
-    signal.name = 'attack-up',
+    signal.name = 'attack-revert',
     signal.consume = 80,
     signal.times = 4,
     signal.order = 70,

@@ -44,6 +44,9 @@ cc.Class({
     },
 
     result: function (event,from,to,arg) {
+
+        //request: merge two signal array of ground signal and follow signal and 
+
         let targetData = arg.targetData;
         let worldDestinationPosition = arg.worldDestinationPosition;
         let signalId = arg.signalId;
