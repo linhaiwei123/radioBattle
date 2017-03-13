@@ -6,7 +6,8 @@ cc.Class({
        _ctx : {
            get: function(){return this.getComponent(cc.Graphics);}
        },
-       _signalColor: null,
+       _signalSensorColor: null,
+
     },
 
     init: function (signalData) {
@@ -14,19 +15,20 @@ cc.Class({
         //this._signalColor = cc.hexToColor(require("signal-circle-color-data")[this._signalData.id]);
         //use the same as signal tips
         //this._signalColor = signalData.color;
-        this.node.opacity = 120;
-        let color = cc.hexToColor(cc.colorToHex(cc.color(signalData.color.r,signalData.color.g,signalData.color.b,this.node.opacity)));
-        this._signalColor = color;
+        //this.node.opacity = 120;
+        //let color = cc.hexToColor(cc.colorToHex(cc.color(signalData.color.r,signalData.color.g,signalData.color.b,this.node.opacity)));
+        this._signalSensorColor = signalData.colorSet.signalSensorColor;
+        //this._signalCoreColor = signalData.colorSet.signalCoreColor;
         
         //rename
         this.node.name = "signal#" + this._signalData.idx;
-        this.node.getChildByName("signal-core").color = this._signalColor;
+        this.node.getChildByName("signal-core").color = signalData.colorSet.signalCoreColor;
         //this.node.setSiblingIndex(1000);
         this.node.zIndex = 50;
     },
 
     onHitGround: function(cb,targetNode){
-        this._ctx.fillColor = this._signalColor;
+        this._ctx.fillColor = this._signalSensorColor;
         this._ctx.circle(0,0,this._signalData.radio);
         this._ctx.fill();
         cb();

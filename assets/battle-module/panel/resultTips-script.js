@@ -8,7 +8,9 @@ cc.Class({
     init: function (resultTipsData) {
         this.getComponent(cc.Label).string = resultTipsData.msg;
         if(resultTipsData.color){
-            this.node.color = resultTipsData.color;
+            //divide color
+            //this.node.color = resultTipsData.color;
+            this.node.color = resultTipsData.color.signalResultColor;
         }
         let randomDestionationX = cc.randomMinus1To1() * 20;
         let randomDestionationY = cc.randomMinus1To1() * 20;

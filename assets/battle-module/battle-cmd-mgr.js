@@ -143,7 +143,9 @@ cc.Class({
             this.getComponent('battle-main-mgr')._battleFsm["cmd-end"]({
                 targetData: this._targetData, 
                 worldDestinationPosition : this._worldDestinationPosition,
-                signalId: 0,
+                //test color
+                //signalId: 0,
+                signalId: 1,
                 windValue: this._windValue,
                 windVector: this._windVector
             });
