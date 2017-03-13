@@ -45,7 +45,8 @@ cc.Class({
 
     result: function (event,from,to,arg) {
 
-        //request: merge two signal array of ground signal and follow signal and 
+        //request: merge two signals of ground signal and follow signal and re-order it
+        //
 
         let targetData = arg.targetData;
         let worldDestinationPosition = arg.worldDestinationPosition;
@@ -82,6 +83,7 @@ cc.Class({
         targetData.actionDuration += Math.max((signal.consume - targetData.speed),10);
         //push the new signals
         this._signals.push(signal);
+
         //reorder the signals
         this._signals.sort(function(a,b){return a.order - b.order});
         //map enery player and enery signals if touch
@@ -89,15 +91,29 @@ cc.Class({
             //get the child
             let player = this.mainPanel.getChildByName("player#" + playerData.id);
             let playerWorldPosition = player.parent.convertToWorldSpaceAR(player.position);
-            for(let signal of this._signals){
-                let signalWorldPosition = signal.worldPosition;
-                //check if touch the radio
-                let distance = cc.pDistance(playerWorldPosition,signalWorldPosition);
-                if(distance <= signal.radio){
-                    //touch
-                    let distanceRate = distance/signal.radio;
-                    signal.cb(playerData,distanceRate);
+
+            //push the mini-signal and re-order it
+            let signalsWithMini = [].concat(playerData.followSignals,this._signals);
+            //re-order again
+            signalsWithMini.sort(function(a,b){return a.order - b.order});
+
+            //iterator the signal with mini
+            //for(let signal of this._signals){
+              for(let signal of signalsWithMini){
+                //add judge of mini-signal
+                if(signal.isMini === true){
+                    signal.cb();
+                }else{
+                    let signalWorldPosition = signal.worldPosition;
+                    //check if touch the radio
+                    let distance = cc.pDistance(playerWorldPosition,signalWorldPosition);
+                    if(distance <= signal.radio){
+                        //touch
+                        let distanceRate = distance/signal.radio;
+                        signal.cb(playerData,distanceRate);
+                    }
                 }
+                
             }
         }
         //minus all the signal times
@@ -108,6 +124,7 @@ cc.Class({
         for(let i = 0; i < this._signals.length;i++){
             let signal = this._signals[i];
             signal.times -= 1;
+            
             if(signal.times == 0){
                 //remove 
                 this._signals.splice(i,1);
@@ -115,6 +132,20 @@ cc.Class({
                 removeRenderSignals.push(signal);
             }
         }
+
+        //add time minus of mini-signal
+        for(let playerData of this._playerDatas){
+            for(let i = 0; i < playerData.followSignals.length; i++){
+                    let signal = playerData.followSignals[i];
+                    signal.times -= 1;
+                    
+                    if(signal.times == 0){
+                        //remove 
+                        playerData.followSignals.splice(i,1);
+                    }
+                }
+        }
+
         this._battleRenderMgr._resultAnimData.removeRenderSignals = removeRenderSignals;
 
         this._battleRenderMgr._resultAnimFsm["start-throw"]();

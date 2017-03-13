@@ -43,6 +43,8 @@ module.exports = [
         luck: 3,
         actionDuration: 0,
         resultTipsDataArray: [],
+        signalsMem : {},
+        followSignals : []
     },
     {
         id: 1,
@@ -58,5 +60,7 @@ module.exports = [
         luck: 3,
         actionDuration: 0,
         resultTipsDataArray: [],
+        signalsMem : {},
+        followSignals : []
     },
 ]

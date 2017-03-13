@@ -144,8 +144,8 @@ cc.Class({
                 targetData: this._targetData, 
                 worldDestinationPosition : this._worldDestinationPosition,
                 //test color
-                signalId: 0,
-                //signalId: 1,
+                //signalId: 0,
+                signalId: 1,
                 windValue: this._windValue,
                 windVector: this._windVector
             });

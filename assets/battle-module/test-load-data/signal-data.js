@@ -15,7 +15,7 @@ let SimpleAttackSignal = function(origin,position,ctrlPosition){
     signal.cb = function(target,rate){
         let data = Math.ceil(Math.max((origin.attack - target.defend) * rate, 1));
         target.blood -= data;
-        target.resultTipsDataArray.push({
+        target.resultTipsDataArray.push({  
             msg: 'hp-' + data,
             color: signal.colorSet
         });   
@@ -23,7 +23,7 @@ let SimpleAttackSignal = function(origin,position,ctrlPosition){
     return signal;
 }
 
-let AttackRevertSignal = function(origin,position,ctrlPosition){
+let BloodUpBuffSignal = function(origin,position,ctrlPosition){
     let signal = {};
     signal.worldPosition = position;
     signal.ctrlPosition = ctrlPosition;
@@ -31,17 +31,46 @@ let AttackRevertSignal = function(origin,position,ctrlPosition){
     signal.origin = origin;
     signal.id = 1;
     signal.idx = null;
-    signal.name = 'attack-revert',
+    signal.name = 'blood-up-buff',
     signal.consume = 80,
     signal.times = 4,
     signal.order = 70,
+    signal.isMini = false,
     signal.colorSet = colorMgr.good;
     signal.cb = function(target,rate){
         //let data = Math.ceil(Math.max((origin.attack - target.defend) * rate, 1));
-        let data = 5;
-        target.attack += data;
+        //let data = 5;
+        //target.attack += data;
+
+        //generate a mini signal to follow the target
+        //mini signal is not need to render
+        //just need the logic part
+        //mini signal for keep on update when target leave the circle
+        let miniSignal = {};
+        miniSignal.origin = origin;
+        miniSignal.id = 100;
+        miniSignal.idx = null;
+        miniSignal.name = 'mini-blood-up-buff';
+        miniSignal.times = 6;
+        miniSignal.order = 1000,
+        miniSignal.rate = rate;
+        miniSignal.target = target;
+        miniSignal.isMini = true;
+        miniSignal.cb = function(parentSignal){
+            let data = 5;
+            this.target.blood += 5;
+            target.resultTipsDataArray.push({
+                //msg: 'attack+' + data,
+                msg: 'hp+' + data,
+                color: parentSignal.colorSet,
+            });
+        }.bind(miniSignal,signal)
+        //push mini-signal to target
+        target.followSignals.push(miniSignal);
+
         target.resultTipsDataArray.push({
-            msg: 'attack+' + data,
+            //msg: 'attack+' + data,
+            msg: "hp up buff add",
             color: signal.colorSet,
         });   
     }
@@ -50,6 +79,6 @@ let AttackRevertSignal = function(origin,position,ctrlPosition){
 
 module.exports = [
     SimpleAttackSignal,
-    AttackUpSignal,
+    BloodUpBuffSignal,
 ];
 //random signal lib
