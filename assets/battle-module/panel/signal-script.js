@@ -12,13 +12,9 @@ cc.Class({
 
     init: function (signalData) {
         this._signalData = signalData;
-        //this._signalColor = cc.hexToColor(require("signal-circle-color-data")[this._signalData.id]);
-        //use the same as signal tips
-        //this._signalColor = signalData.color;
-        //this.node.opacity = 120;
-        //let color = cc.hexToColor(cc.colorToHex(cc.color(signalData.color.r,signalData.color.g,signalData.color.b,this.node.opacity)));
+       
         this._signalSensorColor = signalData.colorSet.signalSensorColor;
-        //this._signalCoreColor = signalData.colorSet.signalCoreColor;
+
         
         //rename
         this.node.name = "signal#" + this._signalData.idx;
@@ -28,10 +24,26 @@ cc.Class({
     },
 
     onHitGround: function(cb,targetNode){
-        this._ctx.fillColor = this._signalSensorColor;
-        this._ctx.circle(0,0,this._signalData.radio);
-        this._ctx.fill();
-        cb();
+        //fix the color merge between sensor and tips
+        //by draw a stroke circle and line linked between core and sensor edge
+        
+        // this._ctx.fillColor = this._signalSensorColor;
+        // this._ctx.circle(0,0,this._signalData.radio);
+        // this._ctx.fill();
+        // cb();
+            // # still hard to recoginze
+            // this._ctx.strokeColor = this._signalSensorColor;
+            // this._ctx.circle(0,0,this._signalData.radio);
+            // this._ctx.stroke();
+            // cb();
+
+            // try strong stroke with black egde
+            this._ctx.strokeColor = cc.Color.BLACK;
+            this._ctx.fillColor = this._signalSensorColor;
+            this._ctx.circle(0,0,this._signalData.radio);
+            this._ctx.stroke();
+            this._ctx.fill();
+            cb();
     },
 
     // update: function(){
