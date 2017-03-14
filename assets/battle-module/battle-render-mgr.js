@@ -87,10 +87,14 @@ cc.Class({
         signal.position = playerPosition;
         signal.getComponent("signal-script").init(signalData);
         let bezier = [signalCtrlPosition, signalCtrlPosition, signalPosition];
+        //error the position changed after set sprite with huaji
+        console.log("before",signal.position);
+
         signal.runAction(cc.sequence(
             //cc.moveTo(this.throwDuration,signalPosition),
             //add wind ,so bezier move
             cc.bezierTo(2, bezier),
+            cc.callFunc(console.log("after",signal.position)),
             cc.callFunc(
                 signal.getComponent("signal-script").onHitGround.bind(signal.getComponent("signal-script"),cb.bind(this)),
                 )

@@ -18,7 +18,9 @@ cc.Class({
         
         //rename
         this.node.name = "signal#" + this._signalData.idx;
-        this.node.getChildByName("signal-core").color = signalData.colorSet.signalCoreColor;
+        //modify add huaji as sprite
+        //not need to render the color
+        //this.node.getChildByName("signal-core").color = signalData.colorSet.signalCoreColor;
         //this.node.setSiblingIndex(1000);
         this.node.zIndex = 50;
     },
