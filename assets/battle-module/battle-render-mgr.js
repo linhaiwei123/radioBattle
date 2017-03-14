@@ -82,19 +82,30 @@ cc.Class({
         let playerPosition = player.position;
         let signalPosition = this.mainPanel.convertToNodeSpaceAR(signalData.worldPosition);
         let signalCtrlPosition = this.mainPanel.convertToNodeSpaceAR(signalData.ctrlPosition);
+
+        //fix the different coordinate between cc.Graphics and cc.Sprite
+        //just use the world position;
+        //let signalCtxPosition = signalData.worldPosition;
+        //let signalCtxCtrlPosition = signalData.ctrlPosition;
+
         let signal = cc.instantiate(this.signalPrefab);
         this.mainPanel.addChild(signal);
         signal.position = playerPosition;
         signal.getComponent("signal-script").init(signalData);
+        //fix the different coordinate between cc.Graphics and cc.Sprite
+        //useless
         let bezier = [signalCtrlPosition, signalCtrlPosition, signalPosition];
+        //let bezier = [signalCtxCtrlPosition, signalCtxCtrlPosition, signalCtxPosition];
+
         //error the position changed after set sprite with huaji
-        console.log("before",signal.position);
+        //it seems the offset is not equal to v2.zero
+        //console.log("before",signal.position,player.position,signal.parent.name,player.parent.name);
 
         signal.runAction(cc.sequence(
             //cc.moveTo(this.throwDuration,signalPosition),
             //add wind ,so bezier move
             cc.bezierTo(2, bezier),
-            cc.callFunc(console.log("after",signal.position)),
+            //cc.callFunc(console.log("after",signal.position,player.position,signal.parent.name,player.parent.name)),
             cc.callFunc(
                 signal.getComponent("signal-script").onHitGround.bind(signal.getComponent("signal-script"),cb.bind(this)),
                 )
